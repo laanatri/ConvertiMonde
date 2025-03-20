@@ -1,3 +1,5 @@
+import { handleClickEvent } from "./countries.js";
+
 const w = 3000;
 const h = 1250;
 
@@ -140,10 +142,8 @@ function addCountryEventListeners(countryElement, data) {
   // Click
   countryElement.addEventListener('click', function() {
     // Réinitialiser tous les pays
-   
-
     document.querySelectorAll(".country").forEach(country => {
-      country.classList.remove("country-on");
+        country.classList.remove("country-on");
     });
     
     // Activer le pays cliqué
@@ -151,6 +151,9 @@ function addCountryEventListeners(countryElement, data) {
     
     // Effectuer le zoom sur le pays
     boxZoom(path.bounds(data), path.centroid(data), 20);
+
+
+    handleClickEvent(data);
   });
 }
 
