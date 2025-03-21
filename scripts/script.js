@@ -1,4 +1,4 @@
-import { handleClickEvent } from "./countries.js";
+import { handleClickEvent } from "./select_country.js";
 
 const w = 3000;
 const h = 1250;
@@ -153,10 +153,13 @@ function addCountryEventListeners(countryElement, data) {
     // Effectuer le zoom sur le pays
     boxZoom(path.bounds(data), path.centroid(data), 20);
 
-
+    //////////////////////////////////////////////////////////////////////////////////////////
+    // Envoie la suite de l'event click
     handleClickEvent(data);
+    ///////////////////////////////////////////////////////////////////////////////////////////
   });
 }
+
 
 // Fonction pour ajouter les écouteurs d'événements aux étiquettes
 function addLabelEventListeners(labelElement, data) {
@@ -188,6 +191,7 @@ function addLabelEventListeners(labelElement, data) {
     
     // Effectuer le zoom sur le pays
     boxZoom(path.bounds(data), path.centroid(data), 20);
+
   });
 }
 
@@ -257,13 +261,16 @@ function adjustLabelBackground(label) {
   
   // Maintenant que l'élément est dans le DOM, on peut obtenir sa boîte englobante
   const bbox = label.text.getBBox();
-  
+
   // Ajuster le fond
-  label.background.setAttribute("x", bbox.x - 2);
-  label.background.setAttribute("y", bbox.y);
-  label.background.setAttribute("width", bbox.width + 4);
-  label.background.setAttribute("height", bbox.height);
+  label.background.setAttribute("x", bbox.x - 10);
+  label.background.setAttribute("y", bbox.y - 3);
+  label.background.setAttribute("width", bbox.width + 20);
+  label.background.setAttribute("height", bbox.height + 6);
+
 }
+
+let labelsGroup = [];
 
 // Fonction d'initialisation de la carte
 async function initMap() {
@@ -315,6 +322,10 @@ async function initMap() {
     
     // Ajouter les écouteurs d'événements
     addCountryEventListeners(countryPath, feature);
+  }
+
+  for (let i = 0; i < json.features.length; i++) {
+    const feature = json.features[i];
     
     // Créer l'étiquette du pays
     const label = createCountryLabel(feature);
@@ -326,7 +337,7 @@ async function initMap() {
       addLabelEventListeners(label.group, feature);
     }
   }
-  
+
   // Initialiser le zoom
   initiateZoom();
   
@@ -335,6 +346,7 @@ async function initMap() {
   setTimeout(() => {
     labels.forEach(adjustLabelBackground);
   }, 0);
+
 }
 
 // Attendre que le DOM soit chargé avant d'initialiser la carte

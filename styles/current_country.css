@@ -1,0 +1,11 @@
+.current-country {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    right: 0;
+    height: 50px;
+    width: 100px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 10px;
+}

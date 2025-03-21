@@ -1,0 +1,13 @@
+.convert-container {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    width: 300px;
+    max-width: 100%;
+    height: 300px;
+    max-height: 100%;
+    transform: translateY(-50%);
+    background-color: black;
+    border: 1px solid black;
+    border-radius: 20%;
+}
