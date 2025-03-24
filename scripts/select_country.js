@@ -39,7 +39,15 @@ export const handleClickEvent = async (data) => {
     const infosContent = document.querySelector(".selected-country-infos .infos-content");
 
     ///////////////////////////////////////////////////////////////////////////////
-    infosContent.innerHTML = `<p>${selectedCountry[0].name.common}</p>`
+    infosContent.innerHTML = `<p>${selectedCountry[0].name.common}</p>
+                          
+                            <p>monnaie officielle : ${selectedCountry[0].currencies[Object.keys(selectedCountry[0].currencies)[0]].name}</p>
+                            <p>capitale: ${selectedCountry[0].capital}</p>
+                            <p>langue officelle: ${selectedCountry[0].languages[Object.keys(selectedCountry[0].languages)[0]]}</p>
+                            
+                            <br>
+                            <img src="${selectedCountry[0].flags.png}"></img> 
+    `
     ///////////////////////////////////////////////////////////////////////////////
 
 }
@@ -48,3 +56,14 @@ document.querySelector(".selected-country-infos .close-btn").addEventListener("c
     document.querySelector(".selected-country-infos").classList.remove("actif")
     document.querySelector("#map-holder").classList.remove("infos")
 })
+
+
+
+
+
+{/* <h2 id="un">nom du pays: ${data[i].name.common}</h2>
+<p>monnaie officielle : ${data[i].currencies[Object.keys(data[i].currencies)[0]].name}</p>
+<p>capitale: ${data[i].capital}</p>
+<p>drapeau: ${data[i].flag}</p>
+<p>langue officelle: ${data[i].languages[Object.keys(data[i].languages)[0]]}</p>
+<img src="${data[i].flags.png}"></img> */}

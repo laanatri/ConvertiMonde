@@ -5,10 +5,11 @@
     height: 100dvh;
     display: flex;
     flex-direction: column;
-    background-color: aqua;
-    padding: 100px 0 50px;
+    /* background-image: url("/home/delorme/ADA/Projets_collectifs/dataviz/andy-warhol-planche-non-découpée-de-12-billets-de-1-dollar.jpg")  */
+    background-color: rgb(66, 107, 107);
+    /* padding: 100px 0 50px;
     overflow: hidden;
-    transition: .5s ease-in-out;
+    transition: .5s ease-in-out; */
 }
 
 .selected-country-infos.actif {
@@ -19,7 +20,7 @@
 .selected-country-infos .close-btn {
     position: absolute;
     top: 100px;
-    right: 20px;
+    right: 20px;gitt
     cursor: pointer;
 }
 
@@ -30,3 +31,28 @@
 .selected-country-infos .convert-btn {
 
 }
+
+.infos-content p:first-child {
+font-size:3rem;
+color: rgb(56, 35, 35);
+}
+
+.infos-content p:nth-child(2)  {
+    font-size: 0.8rem;
+    color: rgb(185, 155, 155);
+    }
+
+    .infos-content p:nth-child(3)  {
+        font-size: 0.8rem;
+        color: rgb(185, 155, 155);
+        }
+
+        .infos-content p:nth-child(4)  {
+            font-size: 0.8rem;
+            color: rgb(185, 155, 155);
+            }  
+
+            .infos-content img {
+                width: 120px;
+                height: 80px;
+            }
