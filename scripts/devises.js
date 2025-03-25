@@ -1,12 +1,13 @@
 import { choiceCountries } from "./select_country.js";
 
-const converter = document.querySelector(".convert-container")
+const converter = document.querySelector(".convert-container");
 const input1 = document.querySelector("#input1");
 const input2 = document.querySelector('#input2');
 const listDevises = document.querySelectorAll('.converter select');
 let optionsList1 = document.querySelectorAll("#devise-select-1 option");
 let optionsList2 = document.querySelectorAll("#devise-select-1 option");
 const button = document.querySelector('.converter button');
+const converterClose = document.querySelector(".converter-close");
 
 const initConverter = (countries) => {
     // le param datas = json
@@ -73,6 +74,10 @@ button.addEventListener("click", async () => {
         const datas = await handleConvertion(listDevises[0].value, listDevises[1].value, input1.value);
         input2.value =  Number.parseFloat(datas.rates[Object.keys(datas.rates)].rate_for_amount).toFixed(2);
     }
+})
+
+converterClose.addEventListener("click", () => {
+    converter.classList.add("hidden");
 })
 
 setTimeout(async () => {

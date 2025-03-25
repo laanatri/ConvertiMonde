@@ -30,6 +30,13 @@
     align-items: center;
 }
 
+.converter-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
 .converter form {
     display: flex;
     flex-direction: column;
