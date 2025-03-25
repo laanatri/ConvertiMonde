@@ -1,3 +1,15 @@
+/* Titre */
+/* font-family: "Rammetto One", sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Rammetto+One&display=swap');
+
+/* Text */
+/* font-family: "Poppins", sans-serif; */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/* Colors */
+@import url(./variables.css);
+
+/* Fichiers css */
 @import url(./map.css);
 @import url(./choice_country.css);
 @import url(./current_country.css);
@@ -9,6 +21,7 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
 html, body {
@@ -19,4 +32,49 @@ html, body {
   height: 100%;
   font-family: 'Arial', sans-serif;
   overflow: hidden;
+}
+
+img {
+  width: 100%;
+}
+
+button {
+  position: relative;
+  z-index: 2;
+  width: 100px;
+  height: 40px;
+  margin: 0 10px;
+  transition: .3s ease-in-out;
+  background-color: var(--dark_bleu);
+  color: white;
+  border: 1px solid var(--dark_bleu);
+  border-radius: 10px;
+  overflow: hidden;
+  transition: .3s ease-in-out;
+  cursor: pointer;
+  font-size: 12px;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+button:before {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform-origin: bottom;
+  transform: scaleY(0);
+  background-color: white;
+  transition: .3s ease-in-out;
+}
+
+button:hover {
+  color: var(--dark_bleu);
+}
+
+button:hover:before {
+  transform: scaleY(1);
 }

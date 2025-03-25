@@ -29,7 +29,8 @@
 }
 
 .selected-country-infos .convert-btn {
-
+    cursor: pointer;
+    
 }
 
 .infos-content p:first-child {

@@ -3,9 +3,47 @@
     z-index: 3;
     top: 0;
     right: 0;
-    height: 50px;
-    width: 100px;
-    background-color: black;
-    border: 1px solid white;
-    border-radius: 10px;
+    transform: translateX(100%);
+    opacity: 0;
+    transition: .5s ease-in-out;
+}
+
+.current-country.active {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.current-country>div:first-child {
+    background-color: var(--brown);
+    border-radius: 0 0 0 5px;
+    padding: 1px;
+}
+
+.current-country .country {
+    display: flex;
+    align-items: center;
+    margin: 5px;
+}
+
+.current-country .country .flag-content {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.current-country .country .code-content {
+    
+}
+
+.all-flags-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    background-color: var(--brown);
+    border-radius: 5px;
+    overflow-y: scroll;
+    max-height: 0;
+    transition: .5s ease-in-out;
+}
+
+.all-flags-content.active {
+    max-height: 300px;
 }

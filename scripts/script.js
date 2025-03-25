@@ -1,5 +1,8 @@
 import { handleClickEvent } from "./select_country.js";
 
+export const code3Country = "";
+export const code3Devise = "";
+
 const w = 3000;
 const h = 1250;
 
@@ -140,7 +143,7 @@ function addCountryEventListeners(countryElement, data) {
   });
   
   // Click
-  countryElement.addEventListener('click', function() {
+  countryElement.addEventListener('click',async function() {
     // Réinitialiser tous les pays
     const countries = document.querySelectorAll(".country");
     countries.forEach(country => {
@@ -154,8 +157,8 @@ function addCountryEventListeners(countryElement, data) {
     boxZoom(path.bounds(data), path.centroid(data), 20);
 
     //////////////////////////////////////////////////////////////////////////////////////////
-    // Envoie la suite de l'event click
     handleClickEvent(data);
+
     ///////////////////////////////////////////////////////////////////////////////////////////
   });
 }
@@ -350,4 +353,4 @@ async function initMap() {
 }
 
 // Attendre que le DOM soit chargé avant d'initialiser la carte
-document.addEventListener('DOMContentLoaded', initMap);
+document.addEventListener('DOMContentLoaded', initMap());

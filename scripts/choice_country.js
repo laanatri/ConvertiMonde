@@ -1,48 +1,52 @@
-import { getAllCountriesNames } from "./select_country.js";
+import { choiceCountries } from "./select_country.js";
+import { initChangeCountry } from "./change_current_country.js";
+import { updateConverter } from "./devises.js";
 
-const choiceCountries = await getAllCountriesNames()
-const countrySelect = document.getElementById("country")
-const nextButton = document.getElementById('next-button')
-
-
-// console.log(await getAllCountriesNames())
-
-// let option;
-
-getAllCountriesNames().then(choiceCountries => {
-
-    countrySelect.innerHTML = ''
-    const options = []; 
-    // Créer un objet Set pour stocker les noms uniques des pays
-    const uniqueNames = new Set();
-
-    Object.entries(choiceCountries).forEach(country => {
-
-        if (!uniqueNames.has(country[1])) {
-            uniqueNames.add(country[1]);
+// export const choiceCountries = await getAllCountriesUse();
+const choiceCountryContainer = document.querySelector(".choice-country-container");
+const countrySelect = document.getElementById("country-select");
+const nextButton = document.getElementById('next-button');
+const changeCountry = document.querySelector('.current-country');
 
 
-      // Créer un nouvel élément option pour un menu déroulant 
-        const option = document.createElement("option");
-        option.innerText = country[1] //Définit le texte visible de l'option comme étant le nom du pays
-        option.value = country[0] // Pareil mais pour le code du pays
-        options.push(option)
-        }
+// First choice
+const initAskCountry = (countries) => {
+    // créer toute la liste de nom de pays à partir de choiceCountries (tableau de pays)
+    countries.forEach(country => {
+        countrySelect.innerHTML += `<option value="${country.codecountry}">${country.name}</option>`;
+    });
+
+    //peut avoir à partir de la window pour mettre en valeur par default ??
+
+    // Ajout Event click sur le bouton pour enrgistrer le pays choisi
+    nextButton.addEventListener("click", () => {
+        event.preventDefault();
+
+        // enregistre le pays
+        let selectedCountry = countrySelect.value;
+
+        // init l'onglet de changement de pays
+        initChangeCountry(selectedCountry, choiceCountries);
+        changeCountry.classList.add("active");
+        
+        // cache le form
+        hideAskCountry();
+
+
+        // met à jour le converter avec la première devise
+
+        // console.log(selectedCountry)
+        updateConverter(0, selectedCountry);
+        /////////////////////////////////////////////////////////////////////////////////////
+
     })
-    
-    // Trie les options par ordre alphabétique des noms de pays
-    // Utilise la méthode localeCompare pour un tri adapté à la langue française
-    options.sort((a, b) => a.innerText.localeCompare(b.innerText, 'fr', {sensitivity: 'base'}))
-    
-    // Parcourt toutes les options triées
-    options.forEach(option => {
-        // Ajoute chaque option au menu déroulant (countrySelect est un élément select défini ailleurs)
-        countrySelect.add(option); 
-        console.log("country", country)
-    })
-    
-})
+}
 
-nextButton.addEventListener("click", () => {
+// Caché la div du form de choix du pays
+const hideAskCountry = () => {
+    choiceCountryContainer.style.opacity = 0;
+    choiceCountryContainer.style.visibility = "hidden";
+}
 
-})
+// Init de la liste déroulante
+initAskCountry(choiceCountries);

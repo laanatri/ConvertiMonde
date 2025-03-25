@@ -4,14 +4,18 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dataviz</title>
+    <title>Change mon flouze</title>
 
+    <!-- D3.js -->
     <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
+
+    <!-- Scripts -->
     <script type="module" src="./scripts/script.js" defer></script>
     <script type="module" src="./scripts/select_country.js" defer></script>
     <script type="module" src="./scripts/choice_country.js" defer></script>
     <script type="module" src="./scripts/devises.js" defer></script>
 
+    <!-- Style -->
     <link rel="stylesheet" href="./styles/style.css">
     
 </head>
@@ -19,14 +23,17 @@
 
     <div class="choice-country-container">
         <div class="choice-country">
-        <div class = "error"></div>
-            <select name ="country" id="country">
-                <option value = "all">Choix du Pays</option>
+            <h1><img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip">Change mon flouze<img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip"></h1>
+            <form>
+                <label for="">Dans quel pays te trouves-tu ?</label>
+                <select name ="country" id="country-select">
+                    <option value="">Choix du Pays</option>
 
-            </select>
-            <button id="next-button">Suivant</button>
-            <!-- ------ mettre le formulaire pour le pays de l'utilisateur ici ------ -->
+                </select>
+                <button id="next-button">Suivant</button>
+                <!-- ------ mettre le formulaire pour le pays de l'utilisateur ici ------ -->
 
+            </form>
         </div>
     </div>
 
@@ -34,9 +41,7 @@
 
         <div id="map-holder"></div>
 
-        <div class="convert-container">
-
-            <!-- ------ mettre le convertisseur avec la devise du country choice et du country selected en choix par default ------ -->
+        <div class="convert-container hidden">
 
             <div class="converter">
 
@@ -66,7 +71,20 @@
 
         <div class="current-country">
 
-            <!-- ------ mettre le current pays de l'utilisateur ici avec possibilité de changer de pays ------ -->
+            <div>
+                <div class="country">
+                    <div class="flag-content">
+                        <img src="" alt="">
+                    </div>
+                    <div class="code-content">
+                        <p></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="all-flags-content">
+
+            </div>
 
         </div>
 
@@ -83,7 +101,7 @@
             </div>
 
             <div class="convert-btn">
-                <p>convertir</p>
+                <button>convertir</button>
             </div>
 
         </div>

@@ -1,37 +1,32 @@
+import { choiceCountries } from "./select_country.js";
+
+const converter = document.querySelector(".convert-container")
 const input1 = document.querySelector("#input1");
 const input2 = document.querySelector('#input2');
-const listDevises = document.querySelectorAll('select');
-const button = document.querySelector('button');
+const listDevises = document.querySelectorAll('.converter select');
+let optionsList1 = document.querySelectorAll("#devise-select-1 option");
+let optionsList2 = document.querySelectorAll("#devise-select-1 option");
+const button = document.querySelector('.converter button');
 
-const getCountries = async () => {
-    const response = await fetch("https://restcountries.com/v3.1/all");
-    return await response.json();
-}
-
-const initConverter = (datas) => {
+const initConverter = (countries) => {
     // le param datas = json
     let devises = [];
     let go = true;
-    datas.forEach(data => {
-        if (devises[0] === undefined) {
-            if (data.currencies && Object.keys(data.currencies)[0]) {
-                devises.push([Object.keys(data.currencies)[0], data.currencies[Object.keys(data.currencies)[0]].name]);
-            }
-        } else {
-            if (data.currencies && Object.keys(data.currencies)[0]) {
-                devises.forEach(d => {
-                    if (d[1] === data.currencies[Object.keys(data.currencies)[0]].name) {
-                        go = false;
-                    }
-                })
-                if (go) {
-                    devises.push([Object.keys(data.currencies)[0], data.currencies[Object.keys(data.currencies)[0]].name]);
-                }
-            }
-        }
-        go = true;
+    countries.forEach(country => {
+        devises.push([country.codeDevise, country.devise])
     })
+
+    // tri
     devises.sort((a, b) => a[1].localeCompare(b[1]));
+
+    devises = devises.reduce((acc, devise) => {
+        if (!acc.some(d => d[0] === devise[0])) {
+            acc.push(devise);
+        }
+        return acc;
+    }, []);
+
+    // ajout des devises dans les listes
     listDevises.forEach((d) => {
         devises.forEach(dev => {
             const devise = document.createElement("option");
@@ -42,9 +37,28 @@ const initConverter = (datas) => {
     })
 }
 
-const handleConvertion = async () => {
-    // const response = await fetch(`https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=${value1}&to=${value2}&amount=${amount}&language=en`, {
-        const response = await fetch(`https://currency-converter5.p.rapidapi.com/currency/list?format=json&language=en`, {
+export const handleDisplayConverter = (b) => {
+    if (b) {
+        converter.classList.remove("hidden");
+    } else {
+        converter.classList.add("hidden");
+    }
+}
+
+export const updateConverter = (index, value) => {
+    const theCountry = choiceCountries.find((country) => {
+        return country.codecountry === value
+    })
+    if (index === 0) {
+        document.querySelector(`#devise-select-1 option[value="${theCountry.codeDevise}"`).selected = true;
+    } else {
+        document.querySelector(`#devise-select-2 option[value="${theCountry.codeDevise}"`).selected = true;
+    }
+}
+
+const handleConvertion = async (value1, value2, amount) => {
+    const response = await fetch(`https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=${value1}&to=${value2}&amount=${amount}&language=en`, {
+    // const response = await fetch(`https://currency-converter5.p.rapidapi.com/currency/list?format=json&language=en`, {
         method: 'GET',
         headers: {
             "x-rapidapi-host": "currency-converter5.p.rapidapi.com",
@@ -61,17 +75,8 @@ button.addEventListener("click", async () => {
     }
 })
 
-initConverter(await getCountries());
-
-const lala = async () => {
-    const response = await fetch("./svg.json");
-    const jsonDatas = await response.json();
-    // console.log(jsonDatas);
-}
-
-lala();
-
-
-console.log( await handleConvertion())
-
-// value1, value2, amount
+setTimeout(async () => {
+    initConverter(choiceCountries);
+    optionsList1 = document.querySelectorAll("#devise-select-1 option");
+    optionsList2 = document.querySelectorAll("#devise-select-1 option");
+}, 5000)

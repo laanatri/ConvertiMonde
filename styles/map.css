@@ -9,7 +9,7 @@
   #map-holder {
     width: 100%;
     height: 100dvh;
-    background-color: #faf9f8;
+    background-color: var(--medium_bleu);
     position: relative;
     transition: .5s ease-in-out;
     overflow: hidden;
@@ -23,12 +23,12 @@
   svg {
     width: 100%;
     height: 100%;
-    background-color: #e6f2ff; /* Couleur de fond pour l'océan */
+    background-color: var(--medium_bleu); /* Couleur de fond pour l'océan */
   }
   
   /* Fond du pays */
   #map rect {
-    fill: #f0f0f0;
+    fill: var(--medium_bleu);
     stroke: none;
   }
   
@@ -36,8 +36,8 @@
   .country {
     position: relative;
     z-index: 0;
-    fill: #d1e5f0;
-    stroke: #ffffff;
+    fill: var(--green);
+    stroke: var(--green);
     stroke-width: 0.5;
     vector-effect: non-scaling-stroke; /* Maintient la largeur du trait même lors du zoom */
     transition: fill 0.3s ease-in-out;
@@ -46,14 +46,14 @@
   
   /* Style lors du survol d'un pays */
   .country:hover {
-    fill: #4fa8ff;
+    fill: var(--brown);
     stroke-width: 1;
   }
   
   /* Style pour le pays actif/sélectionné */
   .country-on {
-    fill: #2b67af !important;
-    stroke: #ffffff;
+    fill: var(--brown) !important;
+    stroke: var(--brown);
     stroke-width: 1.5;
     vector-effect: non-scaling-stroke;
   }
@@ -68,8 +68,8 @@
   
   /* Fond des étiquettes de pays */
   .countryLabelBg {
-    fill: rgba(255, 255, 255, 0.8);
-    stroke: #333;
+    fill: white;
+    stroke:white;
     stroke-width: 0.5;
     rx: 3;
     ry: 3;
@@ -79,7 +79,7 @@
   .countryName {
     font-size: 10px;
     text-transform: uppercase;
-    fill: #333;
+    fill: white;
     font-weight: 600;
     pointer-events: none;
   }
