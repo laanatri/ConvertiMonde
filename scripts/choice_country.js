@@ -7,7 +7,19 @@ const choiceCountryContainer = document.querySelector(".choice-country-container
 const countrySelect = document.getElementById("country-select");
 const nextButton = document.getElementById('next-button');
 const changeCountry = document.querySelector('.current-country');
+const loader = document.querySelector('.loader-container');
 
+window.addEventListener("load", () => {
+    choiceCountryContainer.classList.remove("hidden");
+    loader.classList.add("hidden");
+    document.querySelectorAll(".choice-country-container .choice-country>*").forEach((element, i) => element.style.transitionDelay = ((i * .1) + 1) + "s");
+})
+
+setTimeout(() => {
+    loader.classList.add("hidden");
+    choiceCountryContainer.classList.remove("hidden");
+    document.querySelectorAll(".choice-country-container .choice-country>*").forEach((element, i) => element.style.transitionDelay = ((i * .1) + 1) + "s");
+}, 3000)
 
 // First choice
 const initAskCountry = (countries) => {

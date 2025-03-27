@@ -14,15 +14,29 @@
 }
 
 .current-country>div:first-child {
-    background-color: var(--brown);
+    background-color: var(--green);
     border-radius: 0 0 0 5px;
     padding: 1px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
 }
 
-.current-country .country {
+.current-country>div:first-child.active>img {
+    transform: rotate(0);
+}
+
+.current-country>div:first-child .country {
     display: flex;
     align-items: center;
     margin: 5px;
+}
+
+.current-country>div:first-child>img {
+    width: 30px;
+    transform: rotate(180deg);
+    transition: .3s ease-in-out;
 }
 
 .current-country .country .flag-content {
@@ -30,20 +44,39 @@
     margin-right: 5px;
 }
 
-.current-country .country .code-content {
-    
-}
-
 .all-flags-content {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 5px;
     background-color: var(--brown);
     border-radius: 5px;
+    border: 0px solid var(--brown);
+    border-left: 5px solid var(--brown);
+    border-right: 5px solid var(--brown);
     overflow-y: scroll;
     max-height: 0;
     transition: .5s ease-in-out;
 }
 
+.all-flags-content .country {
+    background-color: var(--green);
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .2s ease-in-out;
+}
+
+.all-flags-content .country:hover {
+    background-color: hsl(77, 100%, 89%);
+}
+
 .all-flags-content.active {
     max-height: 300px;
+    border: 5px solid var(--brown);
 }
+
+.code-content p {
+    color: var(--dark_blue);
+}
+

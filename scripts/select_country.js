@@ -28,24 +28,20 @@ const getAllCountriesUse = async () => {
 export const choiceCountries = await getAllCountriesUse();
 
 const displayCountryInfos = (country) => {
-    countryInfos.classList.add("actif");
-    document.querySelector("#map-holder").classList.add("infos");
-
-    infosContent.innerHTML = `<img src="${country.flags.png}"></img>
-                            <p>${country.name.common}</p>
-                            <p>monnaie officielle : ${country.currencies[Object.keys(country.currencies)[0]].name}</p>
-                            <p>capitale: ${country.capital}</p>
-                            <p>langue officelle: ${Object.values(country.languages).join(', ')}</p>`
+    countryInfos.classList.remove("actif");
+    document.querySelector("#map-holder").classList.remove("infos");
+    setTimeout(() => {
+        countryInfos.classList.add("actif");
+        document.querySelector("#map-holder").classList.add("infos");
+        infosContent.innerHTML = `<img src="${country.flags.png}"></img>
+                                <p>${country.name.common}</p>
+                                <p>monnaie officielle : <span>${country.currencies[Object.keys(country.currencies)[0]].name}</span></p>
+                                <p>capitale : <span>${country.capital}</span></p>
+                                <p>langue officelle : <span>${Object.values(country.languages).join(', ')}</span></p>`;
+    }, 400)
 }
 
 export const handleClickEvent = async (data) => {
-    // Au click sur un pays
-    // récupérer le code 3 pays
-
-    const getCode3Country = () => {
-        return data.properties.adm0_a3;
-    }
-
     // récupérer les données du pays séléctionné
     const countriesDatas = await getCountries();
     const selectedCountry = countriesDatas.filter((pays) => {
@@ -55,26 +51,16 @@ export const handleClickEvent = async (data) => {
         return false;
     });
 
-    // récupérer le code 3 devise
-    const getCode3Devise = () => {
-        return Object.keys(selectedCountry[0].currencies)[0];
-    }
-
     // Affiche la carte infos
     displayCountryInfos(selectedCountry[0]);
 
     // met à jour le converter avec la première devise
     updateConverter(1, data.properties.adm0_a3);
-
-    ///////////////////////////////////////////////////////////////////////
-    
-    return [getCode3Country(), getCode3Devise()];
 }
 
 // Display le converter
 document.querySelector(".convert-btn button").addEventListener("click", () => {
     handleDisplayConverter(true);
-
 })
 
 // close infos pays

@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Change mon flouze</title>
+    <title>ConvertiMonde</title>
 
     <!-- D3.js -->
     <script src="https://cdn.jsdelivr.net/npm/d3@7" defer></script>
@@ -20,61 +20,49 @@
     
 </head>
 <body>
-
-    <div class="choice-country-container">
+    <div class="loader-container">
+        <p>ConvertiMonde</p>
+        <div class="loader">
+            <img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip">
+        </div>
+    </div>
+    <div class="choice-country-container hidden">
         <div class="choice-country">
-            <h1><img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip">Change mon flouze<img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip"></h1>
+            <h1><img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip">ConvertiMonde<img src="./assets/images/e02ce86bcfd6d1d6c2f775afb3ec8c01_w200.gif" alt="coin flip"></h1>
             <form>
                 <label for="">Dans quel pays te trouves-tu ?</label>
                 <select name ="country" id="country-select">
                     <option value="">Choix du Pays</option>
-
                 </select>
                 <button id="next-button">Suivant</button>
-                <!-- ------ mettre le formulaire pour le pays de l'utilisateur ici ------ -->
-
             </form>
         </div>
     </div>
-
     <div class="map-container">
-
         <div id="map-holder"></div>
-
         <div class="convert-container hidden">
-
             <div class="converter">
-
                 <label for="value1">
                     <input id="input1" type="number" name="value1" placeholder="--000--">
                     <select name="value1" id="devise-select-1">
                         <option value="">--Monaie--</option>
-        
                     </select>
                 </label>
-        
                 <label for="value2">
                     <input id="input2" type="number" name="value2" placeholder="--000--">
                     <select name="value2" id="devise-select-2">
                         <option value="">--Monaie--</option>
-        
                     </select>
                 </label>
-        
                 <div class="buttons">
                     <button>convertir</button>
                 </div>
-                
                 <div class="converter-close"> 
-                    <p>X</p>
+                    <img src="./assets/images/cross.svg" alt="">
                 </div>
-                
             </div>
-                
         </div>
-
         <div class="current-country">
-
             <div>
                 <div class="country">
                     <div class="flag-content">
@@ -85,32 +73,17 @@
                     </div>
                 </div>
             </div>
-
-            <div class="all-flags-content">
-
-            </div>
-
+            <div class="all-flags-content"></div>
         </div>
-
         <div class="selected-country-infos">
-
             <div class="close-btn">
-                <p>X</p>
+                <img src="./assets/images/cross.svg" alt="">
             </div>
-
-            <div class="infos-content">
-
-            <!-- ------ mettre les infos du pays choisi ------ -->
-
-            </div>
-
+            <div class="infos-content"></div>
             <div class="convert-btn">
                 <button>convertir</button>
             </div>
-
         </div>
-
     </div>
-
 </body>
 </html>

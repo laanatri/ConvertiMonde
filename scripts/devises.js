@@ -12,7 +12,6 @@ const converterClose = document.querySelector(".converter-close");
 const initConverter = (countries) => {
     // le param datas = json
     let devises = [];
-    let go = true;
     countries.forEach(country => {
         devises.push([country.codeDevise, country.devise])
     })
@@ -59,7 +58,6 @@ export const updateConverter = (index, value) => {
 
 const handleConvertion = async (value1, value2, amount) => {
     const response = await fetch(`https://currency-converter5.p.rapidapi.com/currency/convert?format=json&from=${value1}&to=${value2}&amount=${amount}&language=en`, {
-    // const response = await fetch(`https://currency-converter5.p.rapidapi.com/currency/list?format=json&language=en`, {
         method: 'GET',
         headers: {
             "x-rapidapi-host": "currency-converter5.p.rapidapi.com",
@@ -78,6 +76,12 @@ button.addEventListener("click", async () => {
 
 converterClose.addEventListener("click", () => {
     converter.classList.add("hidden");
+})
+
+converter.addEventListener("click", () => {
+    if (event.target == converter) {
+        converter.classList.add("hidden");
+    }
 })
 
 setTimeout(async () => {

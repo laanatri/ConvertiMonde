@@ -14,16 +14,14 @@ const updateChangeCountry = async (curentCountry, countries) => {
                             <div class="code-content">
                                 <p>${country.codecountry}</p>
                             </div>
-                        </div>`;
+                        </div>
+                        <img src="./assets/images/arrow.svg" alt="">`;
+  
+    // met à jour le converter avec la première devise
+    updateConverter(0, country.codecountry);
+    /////////////////////////////////////////////////////////////////////////////////////
 
-                        
-        // met à jour le converter avec la première devise
-
-        // console.log(country.codecountry)
-        updateConverter(0, country.codecountry);
-        /////////////////////////////////////////////////////////////////////////////////////
-
-    }
+}
 
 export const initChangeCountry = (curentCountry, countries) => {
     // console.log(countries)
@@ -38,7 +36,8 @@ export const initChangeCountry = (curentCountry, countries) => {
                             <div class="code-content">
                                 <p>${country.codecountry}</p>
                             </div>
-                        </div>`;
+                        </div>
+                        <img src="./assets/images/arrow.svg" alt="">`;
 
     for (const country of countries) {
         listChoice.innerHTML += `<div class="country" data-country="${country.codecountry}">
@@ -57,9 +56,9 @@ export const initChangeCountry = (curentCountry, countries) => {
             choice.click();
         })
     })
-    
 }
 
 choice.addEventListener("click", () => {
+    choice.classList.toggle("active");
     listChoice.classList.toggle("active");
 })

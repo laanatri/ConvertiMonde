@@ -273,8 +273,6 @@ function adjustLabelBackground(label) {
 
 }
 
-let labelsGroup = [];
-
 // Fonction d'initialisation de la carte
 async function initMap() {
   const mapHolder = document.getElementById("map-holder");
@@ -354,3 +352,31 @@ async function initMap() {
 
 // Attendre que le DOM soit chargé avant d'initialiser la carte
 document.addEventListener('DOMContentLoaded', initMap());
+
+// reset map click ocean
+document.querySelector("#map-holder").addEventListener("click", () => {
+  const countries = document.querySelectorAll(".country");
+  if (!event.target.classList.contains("country")) {
+      // déselectionne le pays
+      countries.forEach(country => {
+        country.classList.remove("country-on");
+      });
+
+      const mapHolder = document.querySelector("#map-holder");
+
+      // Appliquer le zoom initial
+      const zoomBehavior = svgElement._zoomBehavior;
+
+      const midX = (mapHolder.clientWidth - minZoom * w) / 2;
+      const midY = (mapHolder.clientHeight - minZoom * h) / 2;
+
+      // Utiliser d3.select pour appliquer le zoom
+      d3.select(svgElement)
+        .call(zoomBehavior)
+        .call(zoomBehavior.transform, d3.zoomIdentity.translate(midX, midY).scale(minZoom));
+      }
+
+      // femre la carte infos pays
+      document.querySelector(".selected-country-infos .close-btn").click();
+
+})
