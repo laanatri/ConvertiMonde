@@ -1,4 +1,4 @@
-# 🌎 PROJET DATAVIZ
+# 🌎 PROJET CONVERTIMONDE
 
 ## 📖 Description du projet
 
